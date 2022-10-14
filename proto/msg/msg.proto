@@ -1,0 +1,13 @@
+syntax = "proto3";
+package msg;
+option go_package = "github.com/lifangjunone/proto-example/proto/msg";
+
+message ChatMsg {
+  int64 id=1;  // 消息id
+  string groupId=2;  // 群id
+  int64 senderId=3;  // 发送者uid
+  int64 type=4;  // 消息类型 1文本, 2图片, 3视频, 4音频
+  string content=5;  // 消息内容
+  string uuid=6;  // 作用是去重
+  int64 createTime=7;  // 创建时间
+}

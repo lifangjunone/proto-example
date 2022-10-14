@@ -1,0 +1,22 @@
+syntax = "proto3";
+package group;
+option go_package = "github.com/lifangjunone/proto-example/proto/group";
+import "proto/msg/msg.proto";  // 注意这里就不要加github...了
+
+// 获取消息页面 群组信息列表
+message MessageGroupInfoListRequest {
+  int64 userId=1;
+}
+message MessageGroupInfo {
+  string groupId=1; // 群组id
+  string aliasName=2; // 备注
+  string avatarUrl=3; // 头像
+  msg.ChatMsg lastMsg=4; // 最后一条消息, 注意看这里导入了msg的ChatMsg
+}
+message MessageGroupInfoListResponse {
+  repeated MessageGroupInfo list=1;
+}
+
+service GroupClient {
+  rpc MessageGroupInfoList(MessageGroupInfoListRequest) returns(MessageGroupInfoListResponse);
+}
